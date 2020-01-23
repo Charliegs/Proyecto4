@@ -4,29 +4,25 @@ using UnityEngine;
 
 public class piernasmov : MonoBehaviour {
 
-    public HingeJoint hj;
-    public Transform objetivo;
-    public bool invertido;
-    // Suscribe Edsonxn Channel On Youtube!!
-    //for more tutorials
-    
-    
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        JointSpring js = hj.spring;
-        js.targetPosition = objetivo.localEulerAngles.x;
-        if (js.targetPosition > 180)
-            js.targetPosition = js.targetPosition - 360;
-        js.targetPosition = Mathf.Clamp(js.targetPosition, hj.limits.min + 5, hj.limits.max - 5);
-        if (invertido)
-        {
-            js.targetPosition = js.targetPosition * -1;
-        }
-        hj.spring = js;
-	}
+
+    public HingeJoint Osso;
+    public bool Inverter;
+    public string NomeDoObj;
+
+    void Update()
+    {
+        JointSpring Js = Osso.spring;
+
+        Js.targetPosition = GameObject.Find(NomeDoObj).transform.localEulerAngles.x;
+
+        if (Js.targetPosition > 180)
+            Js.targetPosition = Js.targetPosition - 360;
+
+        Js.targetPosition = Mathf.Clamp(Js.targetPosition, Osso.limits.min + 5, Osso.limits.max - 5);
+
+        if (Inverter)
+            Js.targetPosition = Js.targetPosition * -1;
+
+        Osso.spring = Js;
+    }
 }
