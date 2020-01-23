@@ -54,7 +54,6 @@ public class movimiento : MonoBehaviour
     private void Awake()
     {
         Velocidade = GetComponent<Rigidbody>().velocity.magnitude;
-        posi = humano.transform;
     }
 
     void Start()
@@ -70,13 +69,6 @@ public class movimiento : MonoBehaviour
 
     void Update()
     {
-        humano.transform.position = this.transform.position - this.transform.localPosition;
-        float y = cam.transform.eulerAngles.y;
-        humano.transform.rotation = Quaternion.Euler(humano.transform.rotation.x, y, humano.transform.rotation.z);
-
-
-
-
         if (!Morto)
         {
 
@@ -98,8 +90,7 @@ public class movimiento : MonoBehaviour
 
             if (Input.GetKey(KeyCode.W))
             {
-                
-                rb.velocity = transform.forward * 5;
+                rb.velocity = cam.transform.forward * 5;
 
                 anim.SetBool("golpeado", false);
 
@@ -115,8 +106,6 @@ public class movimiento : MonoBehaviour
                     transform.Rotate(-120 * Time.deltaTime, 0, 0);
                 }
             }
-
-
 
             if (Input.GetKey(KeyCode.W) == false && Corrigindo == false)
             {

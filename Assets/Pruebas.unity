@@ -2659,6 +2659,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb03f0587a94eb4dbb64e8a3307b69b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  posiInicial: {x: 0, y: 0, z: 0}
+  cadera: {fileID: 5364255479223014818}
   Resistencia: 10
   anim: {fileID: 2063881341}
 --- !u!4 &5470899388893536847
