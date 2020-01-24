@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class Player_controller : MonoBehaviour
 {
-    public Vector3 posiInicial;
+    public Quaternion posiInicial;
     public GameObject cadera;
 
     Rigidbody rb;
     CapsuleCollider caps;
     public float Resistencia = 10;
     public Animator anim;
+    public bool puedeCaer = true;
 
     void Awake()
     {
-        posiInicial = cadera.transform.position;
+        puedeCaer = true;
+        posiInicial = cadera.transform.rotation;
     }
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.relativeVelocity.magnitude > Resistencia)
+        if (col.relativeVelocity.magnitude > Resistencia && puedeCaer == true)
         {
             caps.enabled = false;
             rb.constraints = RigidbodyConstraints.None;
@@ -37,7 +39,14 @@ public class Player_controller : MonoBehaviour
 
     IEnumerator recuperacion()
     {
+        puedeCaer = false;
         yield return new WaitForSeconds(2);
-        cadera.transform.position = posiInicial;
+        cadera.transform.position += transform.TransformDirection(Vector3.up * 2);
+        cadera.transform.rotation = posiInicial;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        caps.enabled = true;
+        anim.SetBool("golpeado", false);
+        yield return new WaitForSeconds(2);
+        puedeCaer = true;
     }
 }

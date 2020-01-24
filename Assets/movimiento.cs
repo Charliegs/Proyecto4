@@ -79,13 +79,11 @@ public class movimiento : MonoBehaviour
 
             if (Input.GetKey(KeyCode.S))
             {
-                rb.velocity = transform.forward * 5;
-
                 anim.SetBool("golpeado", false);
 
                 hs1.spring = SpringMin;
                 hs2.spring = SpringMin;
-                rb.AddForce(transform.forward * -1, ForceMode.Impulse);
+                rb.AddForce((transform.forward * -1), ForceMode.Impulse);
             }
 
             if (Input.GetKey(KeyCode.W))
