@@ -13,6 +13,9 @@ public class Player_controller : MonoBehaviour
     public Animator anim;
     public bool puedeCaer = true;
 
+    public GameObject dedos1;
+    public GameObject dedos2;
+
     void Awake()
     {
         puedeCaer = true;
@@ -23,6 +26,9 @@ public class Player_controller : MonoBehaviour
     {
         if (col.relativeVelocity.magnitude > Resistencia && puedeCaer == true)
         {
+            dedos1.GetComponent<dedos>().tomado = false;
+            dedos2.GetComponent<dedos>().tomado = false;
+
             caps.enabled = false;
             rb.constraints = RigidbodyConstraints.None;
             anim.SetBool("golpeado", true);

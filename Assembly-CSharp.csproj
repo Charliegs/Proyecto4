@@ -62,12 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\camera.cs" />
-    <Compile Include="Assets\dedos.cs" />
-    <Compile Include="Assets\movimiento.cs" />
-    <Compile Include="Assets\Scripts\FirstPersonController.cs" />
-    <Compile Include="Assets\Scripts\GravityAttractor.cs" />
-    <Compile Include="Assets\Scripts\GravityBody.cs" />
+    <Compile Include="Assets\Scripts\camera.cs" />
+    <Compile Include="Assets\Scripts\dedos.cs" />
+    <Compile Include="Assets\Scripts\movimiento.cs" />
     <Compile Include="Assets\Scripts\piernasmov.cs" />
     <Compile Include="Assets\Scripts\Player_controller.cs" />
     <Reference Include="Unity.Timeline.Editor">

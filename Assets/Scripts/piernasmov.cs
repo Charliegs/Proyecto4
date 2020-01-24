@@ -7,6 +7,7 @@ public class piernasmov : MonoBehaviour
     public HingeJoint Osso;
     public bool Inverter;
     public string NomeDoObj;
+    
 
     void Update()
     {
