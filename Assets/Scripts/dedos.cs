@@ -32,7 +32,7 @@ public class dedos : MonoBehaviour
             {
                 objeto = go;
                 distance = curDistance;
-            }
+            } 
         }
         tomar();
     }
@@ -51,7 +51,7 @@ public class dedos : MonoBehaviour
 
     public void tomar()
     {
-        if (!tomado && objeto.tag == "interac" && Input.GetKey(KeyCode.E) && distance <= 4)
+        if (!tomado && objeto.tag == "interac" && Input.GetKey(KeyCode.E) && distance <= 0.7f)
         {
             SpringJoint sp = gameObject.AddComponent<SpringJoint>();
             sp.connectedBody = objeto.GetComponent<Rigidbody>();
