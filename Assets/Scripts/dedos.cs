@@ -10,12 +10,23 @@ public class dedos : MonoBehaviour
 
     public GameObject[] objetos;
     public GameObject objeto = null;
-    public float distance = Mathf.Infinity;
+    public float distance;
     public Camera cam;
+
+    public GameObject vacioObject;
+
+
+    public bool derecha = false;
 
 
     void Start()
     {
+        if (this.name == "dedos_derecho")
+        {
+            derecha = true;
+        }
+        else { derecha = false; }
+
         objetos = GameObject.FindGameObjectsWithTag("interac");
         rb = GetComponent<Rigidbody>();
     }
@@ -23,7 +34,7 @@ public class dedos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 position = transform.position;
+        /*Vector3 position = transform.position;
         foreach (GameObject go in objetos)
         {
             Vector3 diff = go.transform.position - position;
@@ -32,22 +43,22 @@ public class dedos : MonoBehaviour
             {
                 objeto = go;
                 distance = curDistance;
-            } 
+            }
+        }*/
+        float nearestDistance = float.MaxValue;
+
+        foreach (GameObject go in objetos)
+        {
+            distance = (gameObject.transform.position - go.transform.position).sqrMagnitude; 
+            if (distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                objeto = go;
+            }
         }
+
         tomar();
     }
-
-    /*void OnCollisionEnter(Collision col)
-    {
-        if (!tomado && col.gameObject.tag == "interac" && Input.GetKey(KeyCode.E))
-        {
-            SpringJoint sp = gameObject.AddComponent<SpringJoint>();
-            sp.connectedBody = col.rigidbody;
-            sp.spring = 12000;
-            sp.breakForce = fuerza;
-            tomado = true;
-        }
-    }*/
 
     public void tomar()
     {
@@ -71,7 +82,6 @@ public class dedos : MonoBehaviour
             Destroy(GetComponent<SpringJoint>());
         }
     }
-
 
     void OnJointBreak()
     {
